@@ -54,40 +54,19 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-md-9">
                 <div class="row" id="meal-container">
 
                 </div>
             </div>
+            <div class="col-md-3" id="ingredient-container">
+
+            </div>
         </div>
     </div>
-    <script>
-        let inputBox = document.getElementById('search');
-        let btn = document.getElementById('search-btn');
-        let mealContainer = document.getElementById('meal-container');
-        btn.addEventListener('click', function () {
-            let meal = inputBox.value;
-            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
-                .then(response => response.json())
-                .then(data => {
-                    let mealInfo = data.meals;
-                    mealContainer.innerHTML = "";
-                    for (let i = 0; i <= mealInfo.length; i++) {
-                        let mealElement = mealInfo[i]
-                        let mealBlock = document.createElement('div');
-                        mealBlock.classList.add("col-md-3");
-                        mealBlock.innerHTML = `<div class="meal-block">
-                                        <img src="${mealElement.strMealThumb}" alt="" class="img-fluid">
-                                        <h5>${mealElement.strMeal}</h5>
-                                    </div>`;
-                        mealContainer.appendChild(mealBlock);
-                    }
-                })
-        })
 
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -98,6 +77,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

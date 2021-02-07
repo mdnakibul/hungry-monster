@@ -5,3 +5,9 @@ body,html{
 .nav-link{
     color: #383838;
 }
+.meal-block h5 {
+    text-align: center;
+    padding: 5px 0px;
+    background: #ddd;
+    margin-top: 5px;
+}
