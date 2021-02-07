@@ -11,7 +11,10 @@ btn.addEventListener('click', function () {
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            console.log(data);
+            if(data.meals == null){
+                alert("Nothing Found")
+            }
             let mealInfo = data.meals;
             mealContainer.innerHTML = "";
             ingredientContainer.innerHTML = "";
