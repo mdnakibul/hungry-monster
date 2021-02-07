@@ -13,6 +13,7 @@ btn.addEventListener('click', function () {
         .then(data => {
             let mealInfo = data.meals;
             mealContainer.innerHTML = "";
+            ingredientContainer.innerHTML = "";
             for (let i = 0; i <= mealInfo.length; i++) {
                 let mealElement = mealInfo[i];
                 let mealBlock = document.createElement('div');
