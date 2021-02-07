@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hungry Monster</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" alt=""></a>
+
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="fas fa-bars"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recipies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+                <form>
+                    <div class="form-group d-flex">
+                        <input type="text" name="search" id="search" class="form-control" placeholder="Search for meal">
+                        <button type="button" class="btn btn-warning" id="search-btn">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row" id="meal-container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let inputBox = document.getElementById('search');
+        let btn = document.getElementById('search-btn');
+        let mealContainer = document.getElementById('meal-container');
+        btn.addEventListener('click', function () {
+            let meal = inputBox.value;
+            fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
+                .then(response => response.json())
+                .then(data => {
+                    let mealInfo = data.meals;
+                    mealContainer.innerHTML = "";
+                    for (let i = 0; i <= mealInfo.length; i++) {
+                        let mealElement = mealInfo[i]
+                        let mealBlock = document.createElement('div');
+                        mealBlock.classList.add("col-md-3");
+                        mealBlock.innerHTML = `<div class="meal-block">
+                                        <img src="${mealElement.strMealThumb}" alt="" class="img-fluid">
+                                        <h5>${mealElement.strMeal}</h5>
+                                    </div>`;
+                        mealContainer.appendChild(mealBlock);
+                    }
+                })
+        })
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
